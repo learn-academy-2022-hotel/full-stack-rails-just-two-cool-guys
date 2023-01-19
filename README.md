@@ -31,7 +31,7 @@ Can see all the blog post titles on the landing page of the application
     <%= blog.title %>
     <li>
     <% end %>
-    
+
 Story 2: In order to interact with the blog post application, as a user of the application, I need to see the details of one blog post.
 
 Branch: blog-show
@@ -39,11 +39,24 @@ Branch: blog-show
 Acceptance Criteria
 
 Has a controller action for show
+> def show
+        @blog = Blog.find(params[:id])       
+    end
+
 Has a route for show
+ get 'blogs/:id' => 'blog#show'
+
 Has a view for show
+<h2> <%= @blog.title %> </h2>
+
 Can navigate from the list of all blog post titles to the view of any given blog post
+> <%= link_to blog.title, shows_path(blog)  %>
 Can see all the title and content for one blog post on a page
+> <h3> <%= @blog.content %> 
 Can navigate back from the show page to the landing page
+> <h6> <%= link_to 'All the Blogs', blogs_path %>
+
+
 Story 3: In order to interact with the blog post application, as a user of the application, I need to see a form where I can fill out information for a new blog post.
 
 Branch: blog-new

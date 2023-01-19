@@ -2,8 +2,10 @@
 <ul>
 <% @blogs.each do |blog| %>
     <li> 
-    <%= blog.title %>
+    <%= link_to blog.title, shows_path(blog)  %>
     <li>
     <% end %>
 <ul>
+
+
 
