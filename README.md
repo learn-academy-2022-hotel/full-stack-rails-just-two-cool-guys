@@ -102,9 +102,30 @@ Branch: blog-create
 Acceptance Criteria
 
 Has a controller action for create
+def create
+        @blog = Blog.create(blog_params)
+        if @blog.valid? 
+            redirect_to blogs_path
+        end 
+    end
+
 Has a route for create
+post 'blogs' => 'blog#create'
+
 Can fill out a form for a new blog post and click on a submit button that will trigger a create action
+<%= form_with model: @blog do |form| %>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <br>
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+    <br>
+    <%= form.submit "Submit" %>
+<% end %>
+
 Can be rerouted to the landing page when a valid blog post is created
+redirect_to blogs_path
+
 🏔 Stretch Goals
 Story 5: In order to interact with the blog post application, as a user of the application, I need to delete a new blog post.
 
