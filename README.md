@@ -64,12 +64,37 @@ Branch: blog-new
 Acceptance Criteria
 
 Has a controller action for new
+def new 
+        @blog = Blog.new
+    end
+
 Has a route for new
+get 'blogs/new' => 'blog#new'
+
 Has a view for new
+> view.html.erb
+
 Can navigate from the landing page to the view of the new page
+<%= link_to "Create New Blog", new_path %>
+
 Can see a form for title and content
+<%= form_with model: @blog do |form| %>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <br>
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+    <br>
+    <%= form.submit "Submit" %>
+<% end %>
+
 Can see a submit button
-Can navigate back from the new page to the landing page
+<%= form.submit "Submit" %>
+
+Can navigate back from the new page to the 
+landing page
+<%= link_to "Return To Main", blogs_path%>
+
 Story 4: In order to interact with the blog post application, as a user of the application, I need to create a new blog post.
 
 Branch: blog-create
